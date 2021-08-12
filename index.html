@@ -14,16 +14,36 @@
 <body>
     <div id="app"></div>
     <script>
-        console.log('Test');
-        console.log('React', window.React);
+        const name = 'Sanaulla'
+        const handle = 'Twitter'
 
-        const headerElement = React.createElement(
+        function NameComponent(props) {
+            return React.createElement(
             'h1',
-            {id: 'header'},
-            'Hello World'
+            null,
+            props.name,
         )
-        ReactDOM.render(headerElement, document.getElementById('app'));
-        console.log('headerElement', headerElement);
+        }
+
+        function HandleComponent (props) {
+            return React.createElement(
+            'h3',
+            null,
+            props.handle
+        )
+        }
+
+        const wrapperElement = React.createElement(
+            'div',
+            { id: 'container' },
+            React.createElement(NameComponent, {name: 'Sanaulla'}),
+            React.createElement(HandleComponent, {handle: 'Twitter'})
+        )
+
+        console.log({wrapperElement});
+
+        ReactDOM.render(wrapperElement, document.getElementById('app'));
+
     </script>
 </body>
 
