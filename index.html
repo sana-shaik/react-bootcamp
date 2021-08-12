@@ -16,6 +16,14 @@
     <script>
         console.log('Test');
         console.log('React', window.React);
+
+        const headerElement = React.createElement(
+            'h1',
+            {id: 'header'},
+            'Hello World'
+        )
+        ReactDOM.render(headerElement, document.getElementById('app'));
+        console.log('headerElement', headerElement);
     </script>
 </body>
 
