@@ -9,40 +9,34 @@
     <!-- React CDN Links -->
     <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
     <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <!-- babel -->
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
 </head>
 
 <body>
     <div id="app"></div>
-    <script>
+    <script type="text/babel">
         const name = 'Sanaulla'
         const handle = 'Twitter'
 
         function NameComponent(props) {
-            return React.createElement(
-            'h1',
-            null,
-            props.name,
-        )
+            return <h1>{props.name}</h1>
         }
 
-        function HandleComponent (props) {
-            return React.createElement(
-            'h3',
-            null,
-            props.handle
-        )
+        function HandleComponent(props) {
+            return <h3>{props.handle}</h3>
         }
 
-        const wrapperElement = React.createElement(
-            'div',
-            { id: 'container' },
-            React.createElement(NameComponent, {name: 'Sanaulla'}),
-            React.createElement(HandleComponent, {handle: 'Twitter'})
-        )
+        function App() {
+            return (
+                <div id="container">
+                    <NameComponent name={name} />
+                    <HandleComponent handle={handle} />
+                </div>
+            )
+        }
 
-        console.log({wrapperElement});
-
-        ReactDOM.render(wrapperElement, document.getElementById('app'));
+        ReactDOM.render(<App />, document.getElementById('app'));
 
     </script>
 </body>
