@@ -27,11 +27,16 @@
         }
 
         class App extends React.Component {
+            constructor(props) {
+                super(props);
+                this.state = {
+                    friends: ['Jordyn', 'Mikenzi', 'Jake']
+                }
+            }
             render() {
-                const friends = ['Jordyn', 'Mikenzi', 'Jake']
                 return (
                     <div>
-                        <FriendsList friends={friends} />
+                        <FriendsList friends={this.state.friends} />
                     </div>
                 )
             }
