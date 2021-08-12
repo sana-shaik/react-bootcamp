@@ -16,22 +16,21 @@
 <body>
     <div id="app"></div>
     <script type="text/babel">
-        const name = 'Sanaulla'
-        const handle = 'Twitter'
-
-        function NameComponent(props) {
-            return <h1>{props.name}</h1>
-        }
-
-        function HandleComponent(props) {
-            return <h3>{props.handle}</h3>
+        function FriendsList(props) {
+            return (
+                <ul>
+                    {props.list.map((name) => (
+                        <li key={name}> {name} </li>
+                    ))}
+                </ul>
+            )
         }
 
         function App() {
+            const friends = ['Jordyn', 'Mikenzi', 'Jake']
             return (
-                <div id="container">
-                    <NameComponent name={name} />
-                    <HandleComponent handle={handle} />
+                <div>
+                    <FriendsList list={friends} />
                 </div>
             )
         }
