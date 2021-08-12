@@ -20,7 +20,10 @@
             return (
                 <ul>
                     {props.friends.map((name) => (
-                        <li key={name}> {name} </li>
+                        <li key={name}> 
+                            <span>{name}</span>
+                            <button onClick={() => props.onRemoveFriend(name)}>Remove</button>
+                            </li>
                     ))}
                 </ul>
             )
@@ -30,13 +33,43 @@
             constructor(props) {
                 super(props);
                 this.state = {
-                    friends: ['Jordyn', 'Mikenzi', 'Jake']
+                    friends: ['Jordyn', 'Mikenzi', 'Jake'],
+                    input: '',
                 }
+                this.handleRemoveFriend = this.handleRemoveFriend.bind(this)
+                this.updateInput = this.updateInput.bind(this)
+                this.handleAddFriend = this.handleAddFriend.bind(this)
+            }
+
+            handleAddFriend() {
+                this.setState((currentState) => {
+                    return {
+                        friends: currentState.friends.concat([this.state.input]),
+                        input: ''
+                    }
+                    
+                })
+            }
+            handleRemoveFriend(name) {
+                console.log('this', this);
+                this.setState((currentState) => {
+                    return {
+                        friends: currentState.friends.filter((friend) => friend !== name)
+                    }
+                })
+            }
+            updateInput(e) {
+                const value = e.target.value;
+                this.setState({
+                    input: value
+                })
             }
             render() {
                 return (
                     <div>
-                        <FriendsList friends={this.state.friends} />
+                        <input type="text" placeholder='new friend' value={this.state.input} onChange={this.updateInput}/>
+                        <button onClick={() => this.handleAddFriend(name)} type="submit">Submit</button>
+                        <FriendsList friends={this.state.friends} onRemoveFriend={this.handleRemoveFriend} />
                     </div>
                 )
             }
